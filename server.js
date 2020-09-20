@@ -26,17 +26,38 @@ var server = http.createServer(function (request, response) {
   if (path === "/") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "text/html;charset=utf-8");
-    response.write(`二哈`);
+    response.write(`<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="/x" />
+      </head>
+      <body>
+        <h1>这节课的内容</h1>
+        <p>HTML和CSS通过HTTP传送到浏览器的整个过程</p>
+        <p>用/路径返回一个HTML页面</p>
+        <p>用/x路径返回一个CSS页面</p>
+        <p>用/y路径返回一个JS页面</p>
+      </body>
+    </html>
+    `);
     response.end();
   } else if (path === "/x") {
     response.statusCode = 200;
     response.setHeader("Content-Type", "text/css;charset=utf-8");
     response.write(`body{color: red;}`);
     response.end();
+  } else if (path === "/y") {
+    response.statusCode = 200;
+    response.setHeader("Content-Type", "text/javascript;charset=utf-8");
+    response.write(`console.log('这是JS内容')`);
+    response.end();
   } else {
     response.statusCode = 404;
     response.setHeader("Content-Type", "text/html;charset=utf-8");
-    response.write(`你输入的路径不存在对应的内容`);
+    response.write(`你访问的页面不存在`);
     response.end();
   }
 
